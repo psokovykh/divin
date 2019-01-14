@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="false">
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{ISO8601, "Russia/Moscow"} [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="htmlwriter" class="ch.qos.logback.core.FileAppender">
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.classic.html.HTMLLayout">
+                <pattern>%d{ISO8601, "Russia/Moscow"}%thread%level%logger%msg</pattern>
+            </layout>
+        </encoder>
+        <file>log.html</file>
+    </appender>
+
+    <logger name="spark" level="WARN" />
+    <logger name="org.eclipse" level="WARN" />
+
+    <root level="INFO">
+        <appender-ref ref="stdout" />
+        <appender-ref ref="htmlwriter" />
+    </root>
+
+</configuration>
